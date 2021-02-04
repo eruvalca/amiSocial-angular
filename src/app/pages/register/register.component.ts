@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
     let registerVM: RegisterViewModel = this.registerForm.getRawValue();
     console.log(registerVM);
 
-    this.authService.login(registerVM)
+    this.authService.register(registerVM)
       .subscribe(response => {
         if (response.isSuccess) {
           console.log(response);
