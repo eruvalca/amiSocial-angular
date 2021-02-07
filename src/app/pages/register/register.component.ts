@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { Validators, FormBuilder } from '@angular/forms';
 import { RegisterViewModel } from 'src/app/interfaces/registerViewModel';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -15,7 +16,11 @@ export class RegisterComponent implements OnInit {
     confirmPassword: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(25)]]
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthenticationService) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthenticationService,
+    private location: Location
+  ) { }
 
   ngOnInit(): void {
   }
@@ -30,5 +35,9 @@ export class RegisterComponent implements OnInit {
           console.log(response);
         }
       });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

@@ -16,7 +16,11 @@ export class AuthenticationService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private jwtHelper: JwtHelperService, private router: Router, private http: HttpClient) { }
+  constructor(
+    private jwtHelper: JwtHelperService,
+    private router: Router,
+    private http: HttpClient
+  ) { }
 
   register(registerRequest: RegisterViewModel): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(this.authUrl + "register", registerRequest, this.httpOptions)
@@ -32,7 +36,7 @@ export class AuthenticationService {
           }
         }),
         catchError(error => this.handleError<AuthResponse>('login'))
-      )
+      );
   }
 
   login(loginRequest: LoginViewModel): Observable<AuthResponse> {
@@ -45,7 +49,7 @@ export class AuthenticationService {
           }
         }),
         catchError(error => this.handleError<AuthResponse>('login'))
-      )
+      );
   }
 
   logout(): void {
