@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { HomeComponent } from './pages/home/home.component';
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -18,7 +19,8 @@ export function tokenGetter() {
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent
   ],
   imports: [
     ReactiveFormsModule,
