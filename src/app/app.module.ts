@@ -10,6 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
+import { CreateMemberProfileComponent } from './pages/create-member-profile/create-member-profile.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -20,7 +22,9 @@ export function tokenGetter() {
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    CreateMemberProfileComponent,
+    DashboardComponent
   ],
   imports: [
     ReactiveFormsModule,

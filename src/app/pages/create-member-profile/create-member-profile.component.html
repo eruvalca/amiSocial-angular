@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-12 col-sm-6 offset-sm-3 col-md-4 offset-md-4">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <h5 class="card-title">
+                            Create your Profile
+                        </h5>
+                    </div>
+                </div>
+                <form [formGroup]="profileForm" (submit)="submitProfile()">
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label>First Name</label>
+                            <input formControlName="firstName" type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label>Middle Name</label>
+                            <input formControlName="middleName" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label>Last Name</label>
+                            <input formControlName="lastName" type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label>Family Nickname</label>
+                            <input formControlName="familyNickname" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label>Date of Birth</label>
+                            <input formControlName="dateOfBirth" type="date" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12 text-right">
+                            <button [disabled]="!profileForm.valid" type="submit" class="btn btn-outline-success shadow">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

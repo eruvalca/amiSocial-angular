@@ -3,6 +3,8 @@ import { Location } from '@angular/common';
 import { Validators, FormBuilder } from '@angular/forms';
 import { RegisterViewModel } from 'src/app/interfaces/registerViewModel';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { MemberService } from 'src/app/services/member.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +21,9 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
-    private location: Location
+    private location: Location,
+    private memberService: MemberService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -27,14 +31,31 @@ export class RegisterComponent implements OnInit {
 
   submitRegister(): void {
     let registerVM: RegisterViewModel = this.registerForm.getRawValue();
-    console.log(registerVM);
 
     this.authService.register(registerVM)
       .subscribe(response => {
         if (response.isSuccess) {
-          console.log(response);
+          if (this.isUserMember()) {
+            this.router.navigate(['dashboard']);
+          } else {
+            this.router.navigate(["profile"]);
+          }
         }
       });
+  }
+
+  isUserMember(): boolean {
+    let isMember = false;
+    this.memberService.getMemberByUser()
+      .subscribe(member => {
+        if (member != null) {
+          isMember = true;
+        } else {
+          isMember = false;
+        }
+      });
+
+    return isMember;
   }
 
   goBack(): void {
