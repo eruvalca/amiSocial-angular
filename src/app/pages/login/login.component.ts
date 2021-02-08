@@ -35,28 +35,20 @@ export class LoginComponent implements OnInit {
     this.authService.login(loginVM)
       .subscribe(async response => {
         if (response.isSuccess) {
-          if (await this.isUserMember()) {
-            this.router.navigate(['dashboard']);
-          } else {
-            this.router.navigate(["profile"]);
-          }
+          this.isUserMember();
         }
       });
   }
 
-  isUserMember(): boolean {
-    let isMember = false;
-
+  isUserMember(): void {
     this.memberService.getMemberByUser()
       .subscribe(member => {
         if (member != null) {
-          isMember = true;
+          this.router.navigate(['dashboard']);
         } else {
-          isMember = false;
+          this.router.navigate(["profile"]);
         }
       });
-
-    return isMember;
   }
 
   goBack(): void {
