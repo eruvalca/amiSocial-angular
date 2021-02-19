@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Validators, FormBuilder } from '@angular/forms';
 import { RegisterViewModel } from 'src/app/interfaces/registerViewModel';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { MemberService } from 'src/app/services/member.service';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { MemberService } from 'src/app/services/member/member.service';
 import { Router } from '@angular/router';
 
 @Component({

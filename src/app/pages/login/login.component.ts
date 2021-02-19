@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { LoginViewModel } from 'src/app/interfaces/loginViewModel';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-import { MemberService } from 'src/app/services/member.service';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { MemberService } from 'src/app/services/member/member.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
 
   submitLogin(): void {
     let loginVM: LoginViewModel = this.loginForm.getRawValue();
-    console.log(loginVM);
 
     this.authService.login(loginVM)
       .subscribe(async response => {

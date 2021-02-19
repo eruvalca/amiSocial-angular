@@ -2,11 +2,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { LoginViewModel } from '../interfaces/loginViewModel';
+import { LoginViewModel } from '../../interfaces/loginViewModel';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { RegisterViewModel } from '../interfaces/registerViewModel';
-import { AuthResponse } from '../interfaces/authResponse';
+import { RegisterViewModel } from '../../interfaces/registerViewModel';
+import { AuthResponse } from '../../interfaces/authResponse';
+import { TokenObj } from 'src/app/interfaces/tokenObj';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -44,6 +45,15 @@ export class AuthenticationService {
       .pipe(
         tap((response: AuthResponse) => {
           if (response.isSuccess) {
+            let tokenObj: TokenObj = {
+              emailAddress: '',
+              nameIdentifier: ''
+            };
+
+            const token = this.jwtHelper.decodeToken(response.token);
+            tokenObj.emailAddress = token['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
+            tokenObj.nameIdentifier = token['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+
             localStorage.removeItem("access_token");
             localStorage.setItem("access_token", response.token);
           }

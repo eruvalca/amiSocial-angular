@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Member } from 'src/app/interfaces/member';
-import { MemberService } from 'src/app/services/member.service';
+import { MemberService } from 'src/app/services/member/member.service';
 
 @Component({
   selector: 'app-create-member-profile',
